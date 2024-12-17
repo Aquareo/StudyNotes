@@ -107,3 +107,72 @@ public class PrinterApp {
 }
 
 ```
+由于多态的存在，每个子类都可以覆写父类的方法，例如：
+
+```java
+class Person {
+    public void run() { … }
+}
+
+class Student extends Person {
+    @Override
+    public void run() { … }
+}
+
+class Teacher extends Person {
+    @Override
+    public void run() { … }
+}
+```
+
+
+如果父类Person的run()方法没有实际意义，能否去掉方法的执行语句？不行
+
+```java
+
+class Person {
+    public void run(); // Compile Error!
+}
+```
+能不能去掉父类的run()方法？
+答案还是不行，因为去掉父类的run()方法，就失去了多态的特性。例如，runTwice()就无法编译：
+
+```java
+public void runTwice(Person p) {
+    p.run(); // Person没有run()方法，会导致编译错误
+    p.run();
+}
+
+```
+
+如果父类的方法本身不需要实现任何功能，仅仅是为了定义方法签名，目的是让子类去覆写它，那么，可以把父类的方法声明为抽象方法：
+
+```java
+class Person {
+    public abstract void run();
+}
+
+```
+
+
+把一个方法声明为abstract，表示它是一个抽象方法，本身没有实现任何方法语句。因为这个抽象方法本身是无法执行的，所以，Person类也无法被实例化。编译器会告诉我们，无法编译Person类，因为它包含抽象方法。
+
+必须把Person类本身也声明为abstract，才能正确编译它：
+
+```java
+abstract class Person {
+    public abstract void run();
+}
+
+```
+
+使用abstract修饰的类就是抽象类。我们无法实例化一个抽象类：
+
+```
+Person p = new Person(); // 编译错误
+```
+
+无法实例化的抽象类有什么用？
+
+因为抽象类本身被设计成只能用于被继承，因此，抽象类可以强迫子类实现其定义的抽象方法，否则编译会报错。因此，抽象方法实际上相当于定义了“规范”。
+
