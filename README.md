@@ -60,3 +60,53 @@ class Student extends Person {
     }
 }
 ```
+
+# 2.Java 多态例子：实现打印机多态
+
+## 多态概念
+
+在 Java 中，多态允许同一方法调用表现出不同的行为。在本例中，我们将演示如何通过多态实现打印不同类型文档的功能。
+
+```java
+abstract class Document {
+    abstract void print();
+}
+
+class TextDocument extends Document {
+    @Override
+    void print() {
+        System.out.println("Printing text document...");
+    }
+}
+
+class PdfDocument extends Document {
+    @Override
+    void print() {
+        System.out.println("Printing PDF document...");
+    }
+}
+
+class ImageDocument extends Document {
+    @Override
+    void print() {
+        System.out.println("Printing image document...");
+    }
+}
+
+public class PrinterApp {
+    public static void printDocument(Document document) {
+        document.print();  // 调用多态方法
+    }
+
+    public static void main(String[] args) {
+        Document textDoc = new TextDocument();
+        Document pdfDoc = new PdfDocument();
+        Document imageDoc = new ImageDocument();
+
+        printDocument(textDoc);   // 输出：Printing text document...
+        printDocument(pdfDoc);    // 输出：Printing PDF document...
+        printDocument(imageDoc);  // 输出：Printing image document...
+    }
+}
+
+```
