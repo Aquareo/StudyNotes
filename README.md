@@ -1,8 +1,7 @@
 # StudyNotes
-This is a programming learning record 
+This is a programming learning record
 
-
-# 在Java中，访问控制修饰符
+# 1. 在Java中，访问控制修饰符
 
 在Java中，`protected`、`private` 和 `public` 是三种不同的访问控制修饰符，它们控制了类、方法或成员变量的可见性和访问权限。
 
@@ -27,3 +26,19 @@ This is a programming learning record
 - `private`: 只能在本类中访问。
 - `protected`: 可以在本类、同包类和子类中访问。
 - `public`: 可以在任何地方访问。
+
+## 继承与访问控制
+
+继承有个特点，就是子类无法访问父类的 `private` 字段或者 `private` 方法。例如，`Student` 类就无法访问 `Person` 类的 `name` 和 `age` 字段：
+
+```java
+class Person {
+    private String name;
+    private int age;
+}
+
+class Student extends Person {
+    public String hello() {
+        return "Hello, " + name; // 编译错误：无法访问name字段
+    }
+}
