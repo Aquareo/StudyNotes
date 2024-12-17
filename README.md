@@ -42,3 +42,17 @@ class Student extends Person {
         return "Hello, " + name; // 编译错误：无法访问name字段
     }
 }
+
+这使得继承的作用被削弱了。为了让子类可以访问父类的字段，我们需要把`private`改为`protected`。用`protected`修饰的字段可以被子类访问：
+
+```java
+class Person {
+    protected String name;
+    protected int age;
+}
+
+class Student extends Person {
+    public String hello() {
+        return "Hello, " + name; // OK!
+    }
+}
