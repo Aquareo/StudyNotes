@@ -180,7 +180,7 @@ Person p = new Person(); // 编译错误
 
 如果一个抽象类没有字段，所有方法全部都是抽象方法，就可以把该抽象类改写为接口：interface。
 
-在Java中，使用interface可以声明一个接口：
+在Java中，使用`interface`可以声明一个接口：
 
 ```java
 interface Person {
