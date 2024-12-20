@@ -134,8 +134,8 @@ class Person {
     public void run(); // Compile Error!
 }
 ```
-能不能去掉父类的run()方法？
-答案还是不行，因为去掉父类的run()方法，就失去了多态的特性。例如，runTwice()就无法编译：
+能不能去掉父类的`run()`方法？
+答案还是不行，因为去掉父类的`run()`方法，就失去了多态的特性。例如，runTwice()就无法编译：
 
 ```java
 public void runTwice(Person p) {
