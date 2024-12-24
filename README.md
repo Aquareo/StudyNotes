@@ -368,7 +368,30 @@ class Student extends Person {
 
 其实可以这么来理解，`p`的声明类型是`Person`和实际类型是`Student`，声明类型限制了不能调用`Student`里面的`test()`，实际类型确可以使`p`能多态使用`Student`里面的'run()'
 
-## 抽象类 vs 接口：区别
+## 抽象类 vs 接口
+
+
+在抽象类中，抽象方法本质上是定义接口规范：即规定高层类的接口，从而保证所有子类都有相同的接口实现，这样，多态就能发挥出威力。
+
+如果一个抽象类没有字段，所有方法全部都是抽象方法：
+
+```java
+abstract class Person {
+    public abstract void run();
+    public abstract String getName();
+}
+```
+
+就可以把该抽象类改写为接口：`interface`。
+在Java中，使用`interface`可以声明一个接口:
+
+```java
+interface Person {
+    void run();
+    String getName();
+}
+```
+
 
 | 特性         | 抽象类                                   | 接口                                         |
 |--------------|------------------------------------------|----------------------------------------------|
