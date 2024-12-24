@@ -720,3 +720,11 @@ public class Person {
 
 ```
 一般不推荐这种写法，因为在导入了多个包后，很难看出`Arrays`类属于哪个包。
+
+java调用`class`的识别顺序
+
+- 如果是完整类名，就直接根据完整类名查找这个`class`；
+- 如果是简单类名，按下面的顺序依次查找：
+-- 查找当前`package`是否存在这个`class`；
+-- 查找`import`的包是否包含这个`class`；
+-- 查找`java.lang`包是否包含这个`class`。
