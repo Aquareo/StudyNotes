@@ -626,3 +626,29 @@ class P
 
 ```
 
+# 6.包
+
+Java定义了一种名字空间，称之为包：`package`。一个类总是属于某个包，类名（比如`Person`）只是一个简写，真正的完整类名是包名.类名
+
+
+
+小明的`Person`类存放在包`ming`下面，因此，完整类名是`ming.Person`；
+
+小红的`Person`类存放在包`hong`下面，因此，完整类名是`hong.Person`；
+
+小军的`Arrays`类存放在包`mr.jun`下面，因此，完整类名是`mr.jun.Arrays`；
+
+JDK的`Arrays`类存放在包`java.util`下面，因此，完整类名是`java.util.Arrays`。
+
+
+
+
+
+```java
+package ming; // 申明包名ming
+
+public class Person {
+}
+```
+
+
