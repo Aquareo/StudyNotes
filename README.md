@@ -1,7 +1,7 @@
 # StudyNotes
 This is a programming learning record
 
-# 在Java中，访问控制修饰符
+# 1.访问控制修饰符`protected`、`private` 和 `public`
 
 在Java中，`protected`、`private` 和 `public` 是三种不同的访问控制修饰符，它们控制了类、方法或成员变量的可见性和访问权限。
 
@@ -60,7 +60,7 @@ class Student extends Person {
     }
 }
 ```
-## 多态概念
+# 2.多态
 在 Java 中，多态允许同一方法调用表现出不同的行为。在本例中，我们将演示如何通过多态实现打印不同类型文档的功能。
 
 ### Java多态例子：实现打印机多态
@@ -126,7 +126,7 @@ class Teacher extends Person {
 ```
 
 
-如果父类Person的run()方法没有实际意义，能否去掉方法的执行语句？不行
+如果父类`Person`的`run()`方法没有实际意义，能否去掉方法的执行语句？不行
 
 ```java
 
@@ -189,13 +189,13 @@ interface Person {
 }
 ```
 
-# Static的作用
+# 3.Static
 
 ## 实例方法与静态方法的区别
 
 在 Java 中，方法可以分为两类：实例方法和静态方法。这两种方法的使用方式和它们与类的关系有所不同。
 
-### 1.1 实例方法 (Non-static Method)
+### 实例方法 (Non-static Method)
 实例方法是属于类的实例对象的，它必须通过创建类的实例后，才能调用。
 
 #### 关键特点：
@@ -220,7 +220,7 @@ public class Main {
 在上述代码中，`b()` 是一个实例方法，它需要通过 `A` 类的对象 `obj` 来调用。
 
 
-### 1.2 静态方法 (Static Method)
+### 静态方法 (Static Method)
 
 ```java
 
@@ -242,7 +242,8 @@ public class Main {
 
 
 
-# 多态的概念
+# 4.多态回顾
+
 ## 关于父类和子类的转换
 
 ```java
@@ -278,7 +279,7 @@ public class Main {
     }
 }
 ```
-### 1.1 向上转型（Upcasting）
+###  向上转型（Upcasting）
 
 ```java
 makelove a = new footjob();
@@ -289,7 +290,7 @@ makelove a = new footjob();
 
 向上转型的好处是你可以通过父类的引用来操作不同子类的对象，这也是 多态 的体现。
 
-### 1.2 访问限制
+###  访问限制
 
 ### 解释
 
@@ -325,7 +326,7 @@ class Student extends Person {
 ```
 
 
-分析，一个实际类型为`Student`，引用类型为`Person`的变量，调用其`run()`方法，调用的是`Person`还是`Student`的run()方法？
+分析，一个实际类型为`Student`，引用类型为`Person`的变量，调用其`run()`方法，调用的是`Person`还是`Student`的`run()`方法？
 
 ```java
 Person p = new Student();
