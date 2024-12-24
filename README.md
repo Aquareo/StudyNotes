@@ -901,3 +901,5 @@ public @interface Report {
 - 仅编译期：`RetentionPolicy.SOURCE`；
 - 仅class文件：`RetentionPolicy.CLASS`；
 - 运行期：`RetentionPolicy.RUNTIME`。
+
+如果`@Retention`不存在，则该`Annotation`默认为`CLASS`。通常我们自定义的`Annotation`都是`RUNTIME`，所以，务必要加上`@Retention(RetentionPolicy.RUNTIME)`
