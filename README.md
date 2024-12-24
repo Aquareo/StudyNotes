@@ -1,7 +1,7 @@
 # StudyNotes
 This is a programming learning record
 
-# 1. 在Java中，访问控制修饰符
+# 在Java中，访问控制修饰符
 
 在Java中，`protected`、`private` 和 `public` 是三种不同的访问控制修饰符，它们控制了类、方法或成员变量的可见性和访问权限。
 
@@ -189,4 +189,51 @@ interface Person {
 }
 ```
 
+# Static的作用
 
+## 实例方法与静态方法的区别
+
+在 Java 中，方法可以分为两类：实例方法和静态方法。这两种方法的使用方式和它们与类的关系有所不同。
+
+### 1.1 实例方法 (Non-static Method)
+实例方法是属于类的实例对象的，它必须通过创建类的实例后，才能调用。
+
+#### 关键特点：
+- **属于对象**：实例方法依赖于对象的状态。
+- **需要实例化对象**：必须通过对象来调用实例方法。
+  
+#### 示例：
+```java
+class A {
+    public String b() {
+        return "123";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        A obj = new A();  // 创建 A 类的对象
+        System.out.println(obj.b());  // 通过对象调用实例方法
+    }
+}
+```
+在上述代码中，`b()` 是一个实例方法，它需要通过 `A` 类的对象 `obj` 来调用。
+
+
+##1.2 静态方法 (Static Method)
+
+```java
+
+class A {
+    public static String b() {
+        return "123";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(A.b());  // 直接通过类名调用静态方法
+    }
+}
+
+```
