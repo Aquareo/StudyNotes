@@ -935,3 +935,105 @@ public @interface Report {
     String value() default "";
 }
 ```
+
+
+# 11.泛型
+
+
+## 一个引子
+
+```java
+public class ArrayList {
+    private Object[] array;
+    private int size;
+    public void add(Object e) {...}
+    public void remove(int index) {...}
+    public Object get(int index) {...}
+}
+```
+如果用上述`ArrayList``存储String`类型，会有这么几个缺点：
+- 需要强制转型；
+- 不方便，易出错。
+
+例如，代码必须这么写：
+```java
+ArrayList list = new ArrayList();
+list.add("Hello");
+// 获取到Object，必须强制转型为String:
+String first = (String) list.get(0);
+```
+很容易出现ClassCastException，因为容易“误转型”：
+```java
+list.add(new Integer(123));
+// ERROR: ClassCastException:
+String second = (String) list.get(1);
+```
+
+要解决上述问题，我们可以为`String`单独编写一种`ArrayList`：
+
+```java
+public class StringArrayList {
+    private String[] array;
+    private int size;
+    public void add(String e) {...}
+    public void remove(int index) {...}
+    public String get(int index) {...}
+}
+```
+
+
+这样一来，存入的必须是`String`，取出的也一定是`String`，不需要强制转型，因为编译器会强制检查放入的类型：
+
+```java
+StringArrayList list = new StringArrayList();
+list.add("Hello");
+String first = list.get(0);
+// 编译错误: 不允许放入非String类型:
+list.add(new Integer(123));
+```
+
+问题暂时解决。
+
+然而，新的问题是，如果要存储`Integer`，还需要为`Integer`单独编写一种`ArrayList`：
+```java
+public class IntegerArrayList {
+    private Integer[] array;
+    private int size;
+    public void add(Integer e) {...}
+    public void remove(int index) {...}
+    public Integer get(int index) {...}
+}
+```
+
+实际上，还需要为其他所有`class`单独编写一种`ArrayList`：
+
+- LongArrayList
+- DoubleArrayList
+- PersonArrayList
+- ...
+
+这是不可能的，JDK的class就有上千个，而且它还不知道其他人编写的class。
+
+为了解决新的问题，我们必须把`ArrayList`变成一种模板：`ArrayList<T>`
+
+```java
+public class ArrayList<T> {
+    private T[] array;
+    private int size;
+    public void add(T e) {...}
+    public void remove(int index) {...}
+    public T get(int index) {...}
+}
+```
+`T`可以是任何class。这样一来，我们就实现了：编写一次模版，可以创建任意类型的`ArrayList`：
+
+```java
+
+// 创建可以存储String的ArrayList:
+ArrayList<String> strList = new ArrayList<String>();
+// 创建可以存储Float的ArrayList:
+ArrayList<Float> floatList = new ArrayList<Float>();
+// 创建可以存储Person的ArrayList:
+ArrayList<Person> personList = new ArrayList<Person>();
+
+```
