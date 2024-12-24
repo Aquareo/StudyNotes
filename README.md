@@ -298,5 +298,37 @@ makelove a = new footjob();
 
 
 
+###子类覆写了父类的方法
+
+```java
+// override
+public class Main {
+    public static void main(String[] args) {
+        Person p = new Student();
+        p.run(); // 应该打印Person.run还是Student.run?
+    }
+}
+
+class Person {
+    public void run() {
+        System.out.println("Person.run");
+    }
+}
+
+class Student extends Person {
+    @Override
+    public void run() {
+        System.out.println("Student.run");
+    }
+}
+
+```
 
 
+分析，一个实际类型为`Student`，引用类型为`Person`的变量，调用其`run()`方法，调用的是`Person`还是`Student`的run()方法？
+
+```java
+Person p = new Student();
+p.run(); // 无法确定运行时究竟调用哪个run()方法
+
+```
