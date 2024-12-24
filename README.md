@@ -414,27 +414,27 @@ public class Main {
 -
 
     ```java
-    interface Animal {
-    void sound();
+        interface Animal {
+        void sound();
+        
+        default void breathe() {
+            System.out.println("Animal is breathing");
+        }
+    }
     
-    default void breathe() {
-        System.out.println("Animal is breathing");
+    class Dog implements Animal {
+        public void sound() {
+            System.out.println("Bark");
+        }
     }
-}
-
-class Dog implements Animal {
-    public void sound() {
-        System.out.println("Bark");
+    
+    public class Main {
+        public static void main(String[] args) {
+            Dog dog = new Dog();
+            dog.sound();  // Bark
+            dog.breathe(); // Animal is breathing
+        }
     }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Dog dog = new Dog();
-        dog.sound();  // Bark
-        dog.breathe(); // Animal is breathing
-    }
-}
 
   ```
 
