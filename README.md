@@ -332,3 +332,37 @@ Person p = new Student();
 p.run(); // 无法确定运行时究竟调用哪个run()方法
 
 ```
+
+
+非常奇怪的事情，`p.run()`运行的是`Student`的，但是确运行不了`p.test()`
+
+```java
+
+// override
+public class Main {
+    public static void main(String[] args) {
+        Person p = new Student();
+        p.run(); // 应该打印Person.run还是Student.run?
+        p.test();// 会报错
+    }
+}
+
+class Person {
+    public void run() {
+        System.out.println("Person.run");
+    }
+}
+
+class Student extends Person {
+    @Override
+    public void run() {
+        System.out.println("Student.run");
+    }
+    public void test()
+    {
+        System.out.println("test");
+    }
+}
+
+```
+
