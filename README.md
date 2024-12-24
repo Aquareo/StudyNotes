@@ -414,6 +414,33 @@ class Student implements Person, Hello { // 实现了两个interface
 }
 ```
 
+### default方法
+
+```java
+
+interface Person {
+    void run();
+    String getName();
+}
+```
+
+在接口中，可以定义`default`方法。例如，把`Person`接口的`run()`方法改为`default`方法：
+
+```java
+interface Person {
+    String getName();
+    default void run() {
+        System.out.println(getName() + " run");
+    }
+}
+```
+
+###`default`方法和抽象类的普通方法的区别
+`interface`没有字段，`default`方法无法访问字段，而抽象类的普通方法可以访问实例字段。
+
+
+`default`方法的目的是，当我们需要给接口新增一个方法时，会涉及到修改全部子类。如果新增的是`default`方法，那么子类就不必全部修改，只需要在需要覆写的地方去覆写新增方法。
+
 
 
 | 特性         | 抽象类                                   | 接口                                         |
