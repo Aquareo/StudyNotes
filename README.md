@@ -242,8 +242,8 @@ public class Main {
 
 
 
-
-# 关于父类和子类的转换
+# 多态的概念
+## 关于父类和子类的转换
 
 ```java
 // 定义父类
@@ -278,7 +278,7 @@ public class Main {
     }
 }
 ```
-## 1.1 向上转型（Upcasting）
+### 1.1 向上转型（Upcasting）
 
 ```java
 makelove a = new footjob();
@@ -289,7 +289,7 @@ makelove a = new footjob();
 
 向上转型的好处是你可以通过父类的引用来操作不同子类的对象，这也是 多态 的体现。
 
-## 1.2 访问限制
+### 1.2 访问限制
 
 ### 解释
 
