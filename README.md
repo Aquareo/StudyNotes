@@ -903,3 +903,9 @@ public @interface Report {
 - 运行期：`RetentionPolicy.RUNTIME`。
 
 如果`@Retention`不存在，则该`Annotation`默认为`CLASS`。通常我们自定义的`Annotation`都是`RUNTIME`，所以，务必要加上`@Retention(RetentionPolicy.RUNTIME)`
+
+
+
+@Inherited
+
+用于标识某个注解是可以被子类继承的。当注解使用了 `@Inherited` 时，子类自动继承父类上的该注解。
