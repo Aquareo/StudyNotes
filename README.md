@@ -871,3 +871,33 @@ public @interface Report {
 }
 ```
 注解的参数类似无参数方法，可以用`default`设定一个默认值（强烈推荐）。最常用的参数应当命名为`value`。
+
+### 元注解
+
+有一些注解可以修饰其他注解，这些注解就称为元注解（meta annotation）
+
+最常用的元注解是`@Target`。使用`@Target`可以定义`Annotation`能够被应用于源码的哪些位置：
+
+-类或接口：`ElementType.TYPE`；
+-字段：`ElementType.FIELD`；
+-方法：`ElementType.METHOD`；
+-构造方法：`ElementType.CONSTRUCTOR`；
+-方法参数：`ElementType.PARAMETER`。
+
+
+```java
+@Target({
+    ElementType.METHOD,
+    ElementType.FIELD
+})
+public @interface Report {
+    ...
+}
+```
+`@Target`定义的`value`是`ElementType[]`数组，只有一个元素时，可以省略数组的写法。
+
+另一个重要的元注解`@Retention`定义了`Annotation`的生命周期：
+
+仅编译期：`RetentionPolicy.SOURCE`；
+仅class文件：`RetentionPolicy.CLASS`；
+运行期：`RetentionPolicy.RUNTIME`。
