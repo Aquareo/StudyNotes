@@ -242,7 +242,7 @@ public class Main {
 
 ## 关于父类和子类的转换
 
-```
+```java
 // 定义父类
 abstract class makelove {
     public abstract void fuck();
