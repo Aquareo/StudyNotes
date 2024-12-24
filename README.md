@@ -385,7 +385,6 @@ class Student extends Person {
 
 ### 例子
 
--
   ```java
     abstract class Animal {
     public abstract void sound();
@@ -411,7 +410,7 @@ public class Main {
 
   ```
 
--
+
 
     ```java
         interface Animal {
@@ -435,6 +434,5 @@ public class Main {
             dog.breathe(); // Animal is breathing
         }
     }
-
-  ```
+    ```
 
