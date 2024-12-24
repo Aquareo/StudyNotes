@@ -628,19 +628,7 @@ class P
 
 # 6.包
 
-Java定义了一种名字空间，称之为包：`package`。一个类总是属于某个包，类名（比如`Person`）只是一个简写，真正的完整类名是包名.类名
-
-
-
-小明的`Person`类存放在包`ming`下面，因此，完整类名是`ming.Person`；
-
-小红的`Person`类存放在包`hong`下面，因此，完整类名是`hong.Person`；
-
-小军的`Arrays`类存放在包`mr.jun`下面，因此，完整类名是`mr.jun.Arrays`；
-
-JDK的`Arrays`类存放在包`java.util`下面，因此，完整类名是`java.util.Arrays`。
-
-
+Java定义了一种名字空间，称之为包：`package`。一个类总是属于某个包，类名（比如`Person`）只是一个简写，真正的完整类名是`包名.类名`。
 
 
 
@@ -651,4 +639,29 @@ public class Person {
 }
 ```
 
+## 包作用域
 
+没有指定访问修饰符（如`public`、`protected`、`private`），默认的访问权限就是包作用域。
+
+```java
+package hello;
+
+class Person {
+    // 包作用域字段
+    String name;
+
+    // 包作用域方法
+    void sayHello() {
+        System.out.println("Hello, " + name);
+    }
+}
+
+class Employee {
+    void introduce() {
+        Person person = new Person();
+        person.name = "Alice";  // 可以访问Person类的name字段，因为它在同一个包内
+        person.sayHello();      // 可以访问Person类的sayHello方法，因为它在同一个包内
+    }
+}
+
+```
