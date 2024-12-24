@@ -278,7 +278,7 @@ public class Main {
     }
 }
 ```
-## 1.1向上转型（Upcasting）
+## 1.1 向上转型（Upcasting）
 
 ```java
 makelove a = new footjob();
