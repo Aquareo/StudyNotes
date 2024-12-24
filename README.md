@@ -789,7 +789,9 @@ Inner Class和普通Class相比，除了能引用Outer实例外，还有一个�
 
 # 8.Java核心类
 
-##字符串
+这一部分讲得是Java的特性，可以慢慢了解
+
+## 字符串
 
 ### String
 
