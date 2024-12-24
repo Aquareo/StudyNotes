@@ -898,6 +898,6 @@ public @interface Report {
 
 另一个重要的元注解`@Retention`定义了`Annotation`的生命周期：
 
-仅编译期：`RetentionPolicy.SOURCE`；
-仅class文件：`RetentionPolicy.CLASS`；
-运行期：`RetentionPolicy.RUNTIME`。
+-仅编译期：`RetentionPolicy.SOURCE`；
+-仅class文件：`RetentionPolicy.CLASS`；
+-运行期：`RetentionPolicy.RUNTIME`。
