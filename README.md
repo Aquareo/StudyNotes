@@ -366,3 +366,5 @@ class Student extends Person {
 
 ```
 
+其实可以这么来理解，`p`的声明类型是`Person`和实际类型是`Student`，声明类型限制了不能调用`Student`里面的`test()`，实际类型确可以使`p`能多态使用`Student`里面的'run()'
+
