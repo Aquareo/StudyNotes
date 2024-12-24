@@ -584,6 +584,27 @@ class Person {
 
 虽然实例可以访问静态字段，但是它们指向的其实都是`Person class`的静态字段。所以，所有实例共享一个静态字段。
 
+# 接口的静态字段
+因为`interface`是一个纯抽象类，所以它不能定义实例字段。但是，`interface`是可以有静态字段的，并且静态字段必须为`final`类型：
+
+```java
+public interface Person {
+    public static final int MALE = 1;
+    public static final int FEMALE = 2;
+}
+
+```
+实际上，因为`interface`的字段只能是`public static final`类型，所以我们可以把这些修饰符都去掉，上述代码可以简写为：
+
+```java
+public interface Person {
+    // 编译器会自动加上public static final:
+    int MALE = 1;
+    int FEMALE = 2;
+}
+```
+
+
 # 静态方法
 
 ```java
