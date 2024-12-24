@@ -382,19 +382,21 @@ class Student extends Person {
 
 
 
-
 ### 例子
 
-  ```java
-    abstract class Animal {
+```java
+abstract class Animal {
+    // 抽象方法，子类必须实现
     public abstract void sound();
     
+    // 普通方法，子类可以继承并使用
     public void breathe() {
         System.out.println("Animal is breathing");
     }
 }
 
 class Dog extends Animal {
+    // 必须实现抽象方法
     public void sound() {
         System.out.println("Bark");
     }
@@ -403,36 +405,85 @@ class Dog extends Animal {
 public class Main {
     public static void main(String[] args) {
         Dog dog = new Dog();
-        dog.sound();  // Bark
-        dog.breathe(); // Animal is breathing
+        dog.sound();   // Output: Bark
+        dog.breathe(); // Output: Animal is breathing
     }
 }
 
-  ```
-
-
-
-    ```java
-        interface Animal {
-        void sound();
-        
-        default void breathe() {
-            System.out.println("Animal is breathing");
-        }
-    }
+```
     
-    class Dog implements Animal {
-        public void sound() {
-            System.out.println("Bark");
-        }
-    }
+```java
+interface Animal {
+    // 抽象方法，必须实现
+    void sound();
     
-    public class Main {
-        public static void main(String[] args) {
-            Dog dog = new Dog();
-            dog.sound();  // Bark
-            dog.breathe(); // Animal is breathing
-        }
+    // 默认方法（Java 8及之后支持）
+    default void breathe() {
+        System.out.println("Animal is breathing");
     }
-    ```
+}
+
+class Dog implements Animal {
+    // 必须实现接口中的抽象方法
+    public void sound() {
+        System.out.println("Bark");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        dog.sound();   // Output: Bark
+        dog.breathe(); // Output: Animal is breathing
+    }
+}
+
+```
+
+
+```java
+// 定义一个接口 Flyable
+interface Flyable {
+    void fly();  // 接口中的方法默认是抽象的
+}
+
+// 定义一个接口 Swimable
+interface Swimable {
+    void swim();  // 接口中的方法默认是抽象的
+}
+
+// 继承 Flyable 和 Swimable 接口的 Duck 类
+class Duck implements Flyable, Swimable {
+    @Override
+    public void fly() {
+        System.out.println("Duck is flying.");
+    }
+
+    @Override
+    public void swim() {
+        System.out.println("Duck is swimming.");
+    }
+}
+
+// 继承 Flyable 接口的 Bird 类
+class Bird implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println("Bird is flying.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Duck duck = new Duck();
+        duck.fly();  // 调用 fly 方法
+        duck.swim();  // 调用 swim 方法
+
+        Bird bird = new Bird();
+        bird.fly();  // 调用 fly 方法
+    }
+}
+
+
+```
 
