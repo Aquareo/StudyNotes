@@ -907,3 +907,31 @@ public @interface Report {
 
 
 `@Inherited`用于标识某个注解是可以被子类继承的。当注解使用了 `@Inherited` 时，子类自动继承父类上的该注解。
+
+
+## 总结：如何定义Annotation
+
+第一步，用`@interface`定义注解
+```java
+public @interface Report {
+}
+```
+第二步，添加参数、默认值：
+```java
+public @interface Report {
+    int type() default 0;
+    String level() default "info";
+    String value() default "";
+}
+
+```
+第三步，用元注解配置注解：
+```java
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Report {
+    int type() default 0;
+    String level() default "info";
+    String value() default "";
+}
+```
