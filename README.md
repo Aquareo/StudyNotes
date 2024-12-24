@@ -239,3 +239,39 @@ public class Main {
 ```
 ### 总结
 当在方法 `b()` 前面加上 `static` 修饰符时，它就变成了一个 静态方法。静态方法属于类本身，而不是类的某个实例对象。因此，可以直接通过类名来调用静态方法，而不需要创建类的实例。
+
+## 关于父类和子类的转换
+
+```
+// 定义父类
+abstract class makelove {
+    public abstract void fuck();
+}
+
+// 定义子类 footjob，继承自 makelove
+class footjob extends makelove {
+    @Override
+    public void fuck() {
+        System.out.println("bbc");
+    }
+
+    // footjob 类独有的方法
+    public void specialMethod() {
+        System.out.println("This is a special method.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // 使用父类引用指向子类对象
+        makelove a = new footjob();
+        a.fuck();  // 输出 "bbc"
+
+        // 如果想调用子类特有的方法，需要强制转换
+        if (a instanceof footjob) {
+            footjob f = (footjob) a;
+            f.specialMethod();  // 输出 "This is a special method."
+        }
+    }
+}
+```
