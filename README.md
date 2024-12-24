@@ -565,6 +565,8 @@ public class Main {
 
 # 5.静态字段和静态方法
 
+# 静态字段
+
 在一个class中定义的字段，我们称之为实例字段。实例字段的特点是，每个实例都有独立的字段，各个实例的同名字段互不影响。
 
 是用`static`修饰的字段，称为静态字段：`static field`
@@ -581,3 +583,25 @@ class Person {
 ```
 
 虽然实例可以访问静态字段，但是它们指向的其实都是`Person class`的静态字段。所以，所有实例共享一个静态字段。
+
+# 静态方法
+
+```java
+public class Test
+{
+    public static void main(String[] args)
+    {
+        P.fun();
+    }
+}
+
+class P
+{
+    public static void fun()
+    {
+        System.out.println("Fuck World"); // Changed the message to be more appropriate
+    }
+}
+
+```
+
