@@ -385,7 +385,7 @@ class Student extends Person {
 
 ### 例子
 
-- ### 1. 抽象类：
+-
   ```java
     abstract class Animal {
     public abstract void sound();
@@ -410,7 +410,8 @@ public class Main {
 }
 
   ```
-- ### 2. 接口：
+
+-
 
     ```java
     interface Animal {
