@@ -670,7 +670,7 @@ class Employee {
 
 在一个`class`中，我们总会引用其他的`class`。例如，小明的`ming.Person`类，如果要引用小军的`mr.jun.Arrays`类，他有三种写法：
 
--第一种
+第一种
 
 ```java
 // Person.java
@@ -685,7 +685,7 @@ public class Person {
 
 ```
 
--第二种写法是用import语句，导入小军的Arrays，然后写简单类名：
+第二种写法是用import语句，导入小军的Arrays，然后写简单类名：
 
 ```java
 // Person.java
@@ -703,7 +703,7 @@ public class Person {
 
 ```
 
--第三种，在写`import`的时候，可以使用`*`，表示把这个包下面的所有`class`都导入进来（但不包括子包的`class`）：
+第三种，在写`import`的时候，可以使用`*`，表示把这个包下面的所有`class`都导入进来（但不包括子包的`class`）：
 
 ```java
 // Person.java
