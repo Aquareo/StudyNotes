@@ -906,6 +906,4 @@ public @interface Report {
 
 
 
-@Inherited
-
-用于标识某个注解是可以被子类继承的。当注解使用了 `@Inherited` 时，子类自动继承父类上的该注解。
+`@Inherited`用于标识某个注解是可以被子类继承的。当注解使用了 `@Inherited` 时，子类自动继承父类上的该注解。
