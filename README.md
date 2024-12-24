@@ -787,6 +787,10 @@ uter.Inner inner = outer.new Inner();
 Inner Class和普通Class相比，除了能引用Outer实例外，还有一个额外的“特权”，就是可以修改Outer Class的`private`字段
 
 
-# Java核心类
+# 8.Java核心类
 
 To be continued...
+
+```java
+String s1 = "Hello!";
+```
