@@ -379,3 +379,61 @@ class Student extends Person {
 | 多重继承       | 一个类只能继承一个抽象类                  | 一个类可以实现多个接口                       |
 | 使用场景       | 用于共享代码和定义通用行为                | 用于定义能力或功能的合约                     |
 | 访问修饰符     | 可以使用 `public`, `protected`, `private` 等 | 方法和字段默认是 `public`                    |
+
+
+
+
+### 例子
+
+- ### 1. 抽象类：
+  ```java
+    abstract class Animal {
+    public abstract void sound();
+    
+    public void breathe() {
+        System.out.println("Animal is breathing");
+    }
+}
+
+class Dog extends Animal {
+    public void sound() {
+        System.out.println("Bark");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        dog.sound();  // Bark
+        dog.breathe(); // Animal is breathing
+    }
+}
+
+  ```
+- ### 2. 接口：
+
+    ```java
+    interface Animal {
+    void sound();
+    
+    default void breathe() {
+        System.out.println("Animal is breathing");
+    }
+}
+
+class Dog implements Animal {
+    public void sound() {
+        System.out.println("Bark");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        dog.sound();  // Bark
+        dog.breathe(); // Animal is breathing
+    }
+}
+
+  ```
+
