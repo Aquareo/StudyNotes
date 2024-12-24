@@ -878,11 +878,11 @@ public @interface Report {
 
 最常用的元注解是`@Target`。使用`@Target`可以定义`Annotation`能够被应用于源码的哪些位置：
 
--类或接口：`ElementType.TYPE`；
--字段：`ElementType.FIELD`；
--方法：`ElementType.METHOD`；
--构造方法：`ElementType.CONSTRUCTOR`；
--方法参数：`ElementType.PARAMETER`。
+- 类或接口：`ElementType.TYPE`；
+- 字段：`ElementType.FIELD`；
+- 方法：`ElementType.METHOD`；
+- 构造方法：`ElementType.CONSTRUCTOR`；
+- 方法参数：`ElementType.PARAMETER`。
 
 
 ```java
@@ -898,6 +898,6 @@ public @interface Report {
 
 另一个重要的元注解`@Retention`定义了`Annotation`的生命周期：
 
--仅编译期：`RetentionPolicy.SOURCE`；
--仅class文件：`RetentionPolicy.CLASS`；
--运行期：`RetentionPolicy.RUNTIME`。
+- 仅编译期：`RetentionPolicy.SOURCE`；
+- 仅class文件：`RetentionPolicy.CLASS`；
+- 运行期：`RetentionPolicy.RUNTIME`。
