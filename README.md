@@ -808,3 +808,38 @@ String s2 = new String(new char[] {'H', 'e', 'l', 'l', 'o', '!'});
 ```
 
 To be continued...
+
+
+# 9.异常处理
+
+## 异常类型
+
+## 捕获异常
+
+
+
+# 10.注解
+
+什么是注解（Annotation）？注解是放在Java源码的类、方法、字段、参数前的一种特殊“注释”：
+
+`注释`会被编译器直接忽略，`注解`则可以被编译器打包进入class文件，因此，`注解`是一种用作标注的“元数据”。
+
+```java
+// this is a component:
+@Resource("hello")
+public class Hello {
+    @Inject
+    int n;
+
+    @PostConstruct
+    public void hello(@Param String name) {
+        System.out.println(name);
+    }
+
+    @Override
+    public String toString() {
+        return "Hello";
+    }
+}
+
+```
