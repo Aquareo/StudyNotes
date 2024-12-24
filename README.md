@@ -665,3 +665,58 @@ class Employee {
 }
 
 ```
+
+## import
+
+在一个`class`中，我们总会引用其他的`class`。例如，小明的`ming.Person`类，如果要引用小军的`mr.jun.Arrays`类，他有三种写法：
+
+第一种
+
+```java
+// Person.java
+package ming;
+
+public class Person {
+    public void run() {
+        // 写完整类名: mr.jun.Arrays
+        mr.jun.Arrays arrays = new mr.jun.Arrays();
+    }
+}
+
+```
+
+第二种写法是用import语句，导入小军的Arrays，然后写简单类名：
+
+```java
+// Person.java
+package ming;
+
+// 导入完整类名:
+import mr.jun.Arrays;
+
+public class Person {
+    public void run() {
+        // 写简单类名: Arrays
+        Arrays arrays = new Arrays();
+    }
+}
+
+```
+
+第三种，在写`import`的时候，可以使用`*`，表示把这个包下面的所有`class`都导入进来（但不包括子包的`class`）：
+
+```java
+// Person.java
+package ming;
+
+// 导入mr.jun包的所有class:
+import mr.jun.*;
+
+public class Person {
+    public void run() {
+        Arrays arrays = new Arrays();
+    }
+}
+
+```
+一般不推荐这种写法，因为在导入了多个包后，很难看出`Arrays`类属于哪个包。
