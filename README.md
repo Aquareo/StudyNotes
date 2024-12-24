@@ -870,3 +870,4 @@ public @interface Report {
     String value() default "";
 }
 ```
+注解的参数类似无参数方法，可以用`default`设定一个默认值（强烈推荐）。最常用的参数应当命名为`value`。
