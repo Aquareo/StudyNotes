@@ -1523,6 +1523,108 @@ my-project
         └── resources
 ```
 
+# 网络编程
+
+## IP地址
+
+在互联网中，一个IP地址用于唯一标识一个网络接口（Network Interface）。一台联入互联网的计算机肯定有一个IP地址，但也可能有多个IP地址。
+
+IP地址分为IPv4和IPv6两种。IPv4采用32位地址，类似`101.202.99.12`，而IPv6采用128位地址，类似`2001:0DA8:100A:0000:0000:1020:F2F3:1428`。IPv4地址总共有232个（大约42亿），而IPv6地址则总共有2128个（大约340万亿亿亿亿），IPv4的地址目前已耗尽，而IPv6的地址是根本用不完的。
+
+
+## TCP编程
+
+### Socket
+
+Socket是一个抽象概念，一个应用程序通过一个Socket来建立一个远程连接，而Socket内部通过TCP/IP协议把数据传输到网络：
+
+一个Socket就是由IP地址和端口号（范围是0～65535）组成，可以把Socket简单理解为IP地址加端口号。端口号总是由操作系统分配，它是一个0～65535之间的数字，其中，小于1024的端口属于特权端口，需要管理员权限，大于1024的端口可以由任意用户的应用程序打开。
+
+- Browser: 101.202.99.2:1201
+- QQ: 101.202.99.2:1304
+- Email: 101.202.99.2:15000
+
+因此，当Socket连接成功地在服务器端和客户端之间建立后：
+
+- 对服务器端来说，它的Socket是指定的IP地址和指定的端口号；
+- 对客户端来说，它的Socket是它所在计算机的IP地址和一个由操作系统分配的随机端口号。
+
+
+```plaintext
+┌───────────┐                                ┌───────────┐
+│Application│                                │Application│
+├───────────┤                                ├───────────┤
+│  Socket   │                                │  Socket   │
+├───────────┤                                ├───────────┤
+│    TCP    │                                │    TCP    │
+├───────────┤     ┌──────┐      ┌──────┐     ├───────────┤
+│    IP     │◀───▶│Router│◀────▶│Router│◀───▶│    IP     │
+└───────────┘     └──────┘      └──────┘     └───────────┘
+
+```
+
+
+### 服务器端
+
+要使用Socket编程，我们首先要编写服务器端程序。Java标准库提供了`ServerSocket`来实现对指定IP和指定端口的监听。`ServerSocket`的典型实现代码如下：
+
+
+```java
+public class Server {
+    public static void main(String[] args) throws IOException {
+        ServerSocket ss = new ServerSocket(6666); // 监听指定端口
+        System.out.println("server is running...");
+        for (;;) {
+            Socket sock = ss.accept();
+            System.out.println("connected from " + sock.getRemoteSocketAddress());
+            Thread t = new Handler(sock);
+            t.start();
+        }
+    }
+}
+```
+
+```java
+class Handler extends Thread {
+    Socket sock;
+
+    public Handler(Socket sock) {
+        this.sock = sock;
+    }
+
+    @Override
+    public void run() {
+        try (InputStream input = this.sock.getInputStream()) {
+            try (OutputStream output = this.sock.getOutputStream()) {
+                handle(input, output);
+            }
+        } catch (Exception e) {
+            try {
+                this.sock.close();
+            } catch (IOException ioe) {
+            }
+            System.out.println("client disconnected.");
+        }
+    }
+
+    private void handle(InputStream input, OutputStream output) throws IOException {
+        var writer = new BufferedWriter(new OutputStreamWriter(output, StandardCharsets.UTF_8));
+        var reader = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8));
+        writer.write("hello\n");
+        writer.flush();
+        for (;;) {
+            String s = reader.readLine();
+            if (s.equals("bye")) {
+                writer.write("bye\n");
+                writer.flush();
+                break;
+            }
+            writer.write("ok: " + s + "\n");
+            writer.flush();
+        }
+    }
+}
+```
 
 
 # 16.XML和JSON
