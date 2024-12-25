@@ -1175,7 +1175,7 @@ Maven就是是专门为Java项目打造的管理和构建工具，它的主要�
 ```
 
 - `groupId`：依赖所在的组织或公司名称。通常是反转的域名，例如 org.slf4j。
-- `artifactId`：依赖的具体模块或库的名称。在这个例子中是 slf4j-api，表示 SLF4J 的 API 库。
+- `artifactId`：依赖的具体模块或库的名称。在这个例子中是 `slf4j-api`，表示 `SLF4J` 的 API 库。
 - `version`：指定依赖的版本号。这样 Maven 会知道需要下载哪个版本的库。
 
 # 16.XML和JSON
