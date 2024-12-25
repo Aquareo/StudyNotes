@@ -956,6 +956,108 @@ public class Main {
 
 ```
 
+如果我们不捕获`UnsupportedEncodingException`，会出现编译失败的问题：
+
+```java
+
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        byte[] bs = toGBK("中文");
+        System.out.println(Arrays.toString(bs));
+    }
+
+    static byte[] toGBK(String s) {
+        return s.getBytes("GBK");
+    }
+}
+
+```
+
+这是因为`String.getBytes(String)`方法定义是：
+
+```java
+public byte[] getBytes(String charsetName) throws UnsupportedEncodingException {
+    ...
+}
+
+```
+在方法定义的时候，使用`throws Xxx`表示该方法可能抛出的异常类型。调用方在调用的时候，必须强制捕获这些异常，否则编译器会报错。
+
+
+
+我们也可以直接不捕获它，而是在方法定义处用throws表示toGBK()方法可能会抛出UnsupportedEncodingException，就可以让toGBK()方法通过编译器检查：
+
+```java
+
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        byte[] bs = toGBK("中文");
+        System.out.println(Arrays.toString(bs));
+    }
+
+    static byte[] toGBK(String s) throws UnsupportedEncodingException {
+        return s.getBytes("GBK");
+    }
+}
+```
+
+上述代码仍然会得到编译错误，修复方法是在`main()`方法中捕获异常并处理：
+
+
+```java
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            byte[] bs = toGBK("中文");
+            System.out.println(Arrays.toString(bs));
+        } catch (UnsupportedEncodingException e) {
+            System.out.println(e);
+        }
+    }
+
+    static byte[] toGBK(String s) throws UnsupportedEncodingException {
+        // 用指定编码转换String为byte[]:
+        return s.getBytes("GBK");
+    }
+}
+
+```
+
+可见，只要是方法声明的`Checked Exception`，不在调用层捕获，也必须在更高的调用层捕获。所有未捕获的异常，最终也必须在`main()`方法中捕获，不会出现漏写`try`的情况。这是由编译器保证的。`main()`方法也是最后捕获`Exception`的机会。
+
+
+如果是测试代码，上面的写法就略显麻烦。如果不想写任何`try`代码，可以直接把`main()`方法定义为`throws Exception`：
+
+```java
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        byte[] bs = toGBK("中文");
+        System.out.println(Arrays.toString(bs));
+    }
+
+    static byte[] toGBK(String s) throws UnsupportedEncodingException {
+        // 用指定编码转换String为byte[]:
+        return s.getBytes("GBK");
+    }
+}
+```
+因为`main()`方法声明了可能抛出`Exception`，也就声明了可能抛出所有的`Exception`，因此在内部就无需捕获了。代价就是一旦发生异常，程序会立刻退出。
+
+
+
+
 # 10.注解
 
 什么是注解（Annotation）？注解是放在Java源码的类、方法、字段、参数前的一种特殊“注释”：
