@@ -891,7 +891,6 @@ try {
      │ NullPointerException    │     │ IllegalArgumentException │ ...
      └─────────────────────────┘     └─────────────────────────┘
 
-
 ```
 
 ## 异常类型
