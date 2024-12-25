@@ -1105,6 +1105,38 @@ public class FactorialTest {
 
 # 15.Maven基础
 
+Maven是一个Java项目管理和构建工具，它可以定义项目结构、项目依赖，并使用统一的方式进行自动化构建，是Java项目不可缺少的工具。
+
+
+在了解Maven之前，我们先来看看一个Java项目需要的东西。首先，我们需要确定引入哪些依赖包。例如，如果我们需要用到commons logging，我们就必须把commons logging的jar包放入classpath。如果我们还需要log4j，就需要把log4j相关的jar包都放到classpath中。这些就是依赖包的管理。
+
+其次，我们要确定项目的目录结构。例如，`src`目录存放Java源码，`resources`目录存放配置文件，`bin`目录存放编译生成的`.class`文件。
+
+此外，我们还需要配置环境，例如JDK的版本，编译打包的流程，当前代码的版本号。
+
+最后，除了使用Eclipse这样的IDE进行编译外，我们还必须能通过命令行工具进行编译，才能够让项目在一个独立的服务器上编译、测试、部署。
+
+
+Maven就是是专门为Java项目打造的管理和构建工具，它的主要功能有：
+
+- 提供了一套标准化的项目结构；
+- 提供了一套标准化的构建流程（编译，测试，打包，发布……）；
+- 提供了一套依赖管理机制。
+- 
+一个使用Maven管理的普通的Java项目
+
+a-maven-project
+├── pom.xml
+├── src
+│   ├── main
+│   │   ├── java
+│   │   └── resources
+│   └── test
+│       ├── java
+│       └── resources
+└── target
+
+
 # 16.XML和JSON
 
 # 17.JDBC编程
