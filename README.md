@@ -1049,6 +1049,47 @@ C++里面学过一些，暂时跳过，To be continued...
 
 # 13.单元测试
 
+## JUnit测试
+
+我们先通过一个示例来看如何编写测试。假定我们编写了一个计算阶乘的类，它只有一个静态方法来计算阶乘：
+
+
+```java
+public class Factorial {
+    public static long fact(long n) {
+        long r = 1;
+        for (long i = 1; i <= n; i++) {
+            r = r * i;
+        }
+        return r;
+    }
+}
+```
+
+以Eclipse为例，当我们已经编写了一个`Factorial.java`文件后，我们想对其进行测试，需要编写一个对应的`FactorialTest.java`文件，以`Test`为后缀是一个惯例，并分别将其放入`src`和`test`目录中。
+
+我们来看一下`FactorialTest.java`的内容：
+
+```java
+package com.itranswarp.learnjava;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+public class FactorialTest {
+
+    @Test
+    void testFact() {
+        assertEquals(1, Factorial.fact(1));
+        assertEquals(2, Factorial.fact(2));
+        assertEquals(6, Factorial.fact(3));
+        assertEquals(3628800, Factorial.fact(10));
+        assertEquals(2432902008176640000L, Factorial.fact(20));
+    }
+}
+```
+
+
 # 14.多线程
 
 # 15.Maven基础
