@@ -929,7 +929,32 @@ Java规定：
 
 ## 捕获异常
 
+捕获异常使用`try...catch`语句，把可能发生异常的代码放到`try {...}`中，然后使用`catch`捕获对应的`Exception`及其子类
 
+```java
+// try...catch
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        byte[] bs = toGBK("中文");
+        System.out.println(Arrays.toString(bs));
+    }
+
+    static byte[] toGBK(String s) {
+        try {
+            // 用指定编码转换String为byte[]:
+            return s.getBytes("GBK");
+        } catch (UnsupportedEncodingException e) {
+            // 如果系统不支持GBK编码，会捕获到UnsupportedEncodingException:
+            System.out.println(e); // 打印异常信息
+            return s.getBytes(); // 尝试使用默认编码
+        }
+    }
+}
+
+```
 
 # 10.注解
 
