@@ -1200,6 +1200,50 @@ Maven就是是专门为Java项目打造的管理和构建工具，它的主要�
 - `artifactId`：依赖的具体模块或库的名称。在这个例子中是 `slf4j-api`，表示 `SLF4J` 的 API 库。
 - `version`：指定依赖的版本号。这样 Maven 会知道需要下载哪个版本的库。
 
+### 依赖管理
+
+
+
+
+## 模块管理
+在软件开发中，把一个大项目分拆为多个模块是降低软件复杂度的有效方法：
+
+```plaintext
+                        ┌──────────────┐
+                        │ Single       │
+                        │ Project      │
+                        └──────────────┘
+                               │
+                   ┌───────────┴───────────┐
+                   │           │           │
+            ┌──────────┐ ┌──────────┐ ┌──────────┐
+            │ Module A │ │ Module B │ │ Module C │
+            └──────────┘ └──────────┘ └──────────┘
+```
+
+
+对于Maven工程来说，原来是一个大项目：
+```plaintext
+single-project
+├── pom.xml
+└── src
+```
+
+现在可以分拆成3个模块：
+
+```plaintext
+multiple-projects
+├── module-a
+│   ├── pom.xml
+│   └── src
+├── module-b
+│   ├── pom.xml
+│   └── src
+└── module-c
+    ├── pom.xml
+
+```
+
 # 16.XML和JSON
 
 # 17.JDBC编程
