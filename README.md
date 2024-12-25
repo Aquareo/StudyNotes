@@ -1625,18 +1625,187 @@ class Handler extends Thread {
     }
 }
 ```
+### 客户端
+
+```java
+public class Client {
+    public static void main(String[] args) throws IOException {
+        Socket sock = new Socket("localhost", 6666); // 连接指定服务器和端口
+        try (InputStream input = sock.getInputStream()) {
+            try (OutputStream output = sock.getOutputStream()) {
+                handle(input, output);
+            }
+        }
+        sock.close();
+        System.out.println("disconnected.");
+    }
+
+    private static void handle(InputStream input, OutputStream output) throws IOException {
+        var writer = new BufferedWriter(new OutputStreamWriter(output, StandardCharsets.UTF_8));
+        var reader = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8));
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("[server] " + reader.readLine());
+        for (;;) {
+            System.out.print(">>> "); // 打印提示
+            String s = scanner.nextLine(); // 读取一行输入
+            writer.write(s);
+            writer.newLine();
+            writer.flush();
+            String resp = reader.readLine();
+            System.out.println("<<< " + resp);
+            if (resp.equals("bye")) {
+                break;
+            }
+        }
+    }
+}
+```
+
+# 17.XML和JSON
+
+## JSON
+
+在Web上使用XML现在越来越少，取而代之的是JSON这种数据结构。
+
+JSON是JavaScript Object Notation的缩写，它去除了所有JavaScript执行代码，只保留JavaScript的对象格式。一个典型的JSON如下：
+
+```java
+{
+    "id": 1,
+    "name": "Java核心技术",
+    "author": {
+        "firstName": "Abc",
+        "lastName": "Xyz"
+    },
+    "isbn": "1234567",
+    "tags": ["Java", "Network"]
+}
+
+```
+
+# 18.JDBC编程
+
+## 引子
+程序运行的时候，数据都是在内存中的。当程序终止的时候，通常都需要将数据保存到磁盘上，无论是保存到本地磁盘，还是通过网络保存到服务器上，最终都会将数据写入磁盘文件。
+
+而如何定义数据的存储格式就是一个大问题。
+
+你可以用一个文本文件保存，一行保存一个学生，用,隔开：
+
+``` plaintext
+Michael,99
+Bob,85
+Bart,59
+Lisa,87
+```
+
+你还可以用JSON格式保存，也是文本文件：
+``` plaintext
+[
+    {"name":"Michael","score":99},
+    {"name":"Bob","score":85},
+    {"name":"Bart","score":59},
+    {"name":"Lisa","score":87}
+]
+```
+
+但是问题来了：
+
+不能做快速查询，只有把数据全部读到内存中才能自己遍历，但有时候数据的大小远远超过了内存（比如蓝光电影，40GB的数据），根本无法全部读入内存。
+
+为了便于程序保存和读取数据，而且，能直接通过条件快速查询到指定的数据，就出现了数据库（Database）这种专门用于集中存储和查询的软件。
 
 
-# 16.XML和JSON
 
-# 17.JDBC编程
 
-# 18.函数式编程
 
-# 19.设计模式
+## 数据库类别
+既然我们要使用关系数据库，就必须选择一个关系数据库。目前广泛使用的关系数据库也就这么几种：
 
-# 20.web开发
+付费的商用数据库：
 
-# 21.Spring开发
+- Oracle，典型的高富帅；
+- SQL Server，微软自家产品，Windows定制专款；
+- DB2，IBM的产品，听起来挺高端；
+- Sybase，曾经跟微软是好基友，后来关系破裂，现在家境惨淡。
+  
+这些数据库都是不开源而且付费的，最大的好处是花了钱出了问题可以找厂家解决，不过在Web的世界里，常常需要部署成千上万的数据库服务器，当然不能把大把大把的银子扔给厂家，所以，无论是Google、Facebook，还是国内的BAT，无一例外都选择了免费的开源数据库：
 
-# 22.Spring Boot开发
+- MySQL，大家都在用，一般错不了；
+- PostgreSQL，学术气息有点重，其实挺不错，但知名度没有MySQL高；
+- sqlite，嵌入式数据库，适合桌面和移动应用。
+
+作为一个Java工程师，选择哪个免费数据库呢？当然是MySQL。因为MySQL普及率最高，出了错，可以很容易找到解决方法。而且，围绕MySQL有一大堆监控和运维的工具，安装和使用很方便。
+
+
+## JDBC
+
+什么是JDBC？JDBC是Java DataBase Connectivity的缩写，它是Java程序访问数据库的标准接口。
+
+使用Java程序访问数据库时，Java代码并不是直接通过TCP连接去访问数据库，而是通过JDBC接口来访问，而JDBC接口则通过JDBC驱动来实现真正对数据库的访问。
+
+使用JDBC的好处是：
+
+- 各数据库厂商使用相同的接口，Java代码不需要针对不同数据库分别开发；
+- Java程序编译期仅依赖java.sql包，不依赖具体数据库的jar包；
+- 可随时替换底层数据库，访问数据库的Java代码基本不变。
+
+
+
+# 19.函数式编程
+
+函数式编程（请注意多了一个“式”字）——Functional Programming，虽然也可以归结到面向过程的程序设计，但其思想更接近数学计算。
+
+函数式编程的一个特点就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数！
+
+Java平台从Java 8开始，支持函数式编程。
+
+
+## Lambda基础
+
+Lambda 表达式允许将代码块传递给方法作为参数，使得 Java 编程更加简洁和灵活。其基本语法如下：
+
+```java
+(parameters) -> expression
+```
+例如：
+
+```java
+// 传统方式
+Runnable r1 = new Runnable() {
+    @Override
+    public void run() {
+        System.out.println("Hello, World!");
+    }
+};
+
+// 使用 Lambda 表达式
+Runnable r2 = () -> System.out.println("Hello, World!");
+
+```
+
+解析：
+- `Runnable` 是一个函数式接口，它只有一个方法 `run()`，这个方法没有参数，也没有返回值。
+- `Runnable r1 = new Runnable() {...};` 这部分代码使用了 匿名内部类（Anonymous Inner Class）的方式来实现 `Runnable` 接口。
+- 这种方式虽然能够实现 `Runnable` 接口，但它较为冗长，需要显式地创建一个匿名内部类，并且定义接口方法的实现。这对于一个简单的任务来说显得有些繁琐。
+
+使用 Lambda 表达式的方式
+
+```java
+Runnable r2 = () -> System.out.println("Hello, World!");
+
+```
+解析：
+- Lambda 表达式：Java 8 引入了 Lambda 表达式，使得我们能够以更简洁的方式表达匿名类的实现。
+- `Runnable` 是一个函数式接口，它只有一个抽象方法 run()，因此可以使用 Lambda 表达式来替代传统的匿名内部类。
+- ()：表示 `run()` 方法的参数列表。由于 run() 方法没有参数，这里为空。
+- ->：是 Lambda 表达式的分隔符，表示将左边的输入参数（这里为空）映射到右边的函数体。
+- `System.out.println("Hello, World!");`：这是 Lambda 表达式的主体，表示执行的代码。当 `run()`方法被调用时，这行代码会被执行，打印出 "Hello, World!"。
+
+# 20.设计模式
+
+# 21.web开发
+
+# 22.Spring开发
+
+# 23.Spring Boot开发
