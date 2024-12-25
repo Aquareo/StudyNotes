@@ -1089,6 +1089,17 @@ public class FactorialTest {
 }
 ```
 
+核心测试方法`testFact()`加上了`@Test`注解，这是JUnit要求的，它会把带有`@Test`的方法识别为测试方法。在测试方法内部，我们用`assertEquals(1, Factorial.fact(1))`表示，期望`Factorial.fact(1)`返回`1`。`assertEquals(expected, actual)`是最常用的测试方法，它在`Assertion`类中定义。`Assertion`还定义了其他断言方法，例如：
+
+- `assertTrue()`: 期待结果为true
+- `assertFalse()`: 期待结果为false
+- `assertNotNull()`: 期待结果为非null
+- `assertArrayEquals()`: 期待结果为数组并与期望数组每个元素的值均相等
+- ...
+运行单元测试非常简单。选中`FactorialTest.java`文件，点击`Run` - `Run As` - `JUnit Test`，Eclipse会自动运行这个JUnit测试，并显示结果。
+
+
+
 
 # 14.多线程
 
