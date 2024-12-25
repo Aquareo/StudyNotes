@@ -1128,20 +1128,6 @@ Maven就是是专门为Java项目打造的管理和构建工具，它的主要�
 
 一个使用 Maven 管理的普通 Java 项目，默认的目录结构如下所示：
 
-a-maven-project
-+-- pom.xml
-+-- src
-|   +-- main
-|   |   +-- java
-|   |   +-- resources
-|   +-- test
-|       +-- java
-|       +-- resources
-+-- target
-
-
-## 目录说明
-
 - `pom.xml`：Maven 项目的配置文件，包含项目的基本信息和依赖等。
 - `src/main/java`：存放主应用程序代码的目录。
 - `src/main/resources`：存放资源文件（如配置文件、静态资源等）的目录。
@@ -1149,6 +1135,29 @@ a-maven-project
 - `src/test/resources`：存放测试相关资源文件的目录。
 - `target`：编译后的输出目录，包含编译后的 class 文件、JAR 文件等。
 
+
+我们再来看最关键的一个项目描述文件`pom.xml`，它的内容长得像下面：
+
+```java
+<project ...>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.itranswarp.learnjava</groupId>
+	<artifactId>hello</artifactId>
+	<version>1.0</version>
+	<packaging>jar</packaging>
+	<properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.release>17</maven.compiler.release>
+	</properties>
+	<dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.16</version>
+        </dependency>
+	</dependencies>
+</project>
+```
 
 # 16.XML和JSON
 
