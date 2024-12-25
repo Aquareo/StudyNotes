@@ -1244,6 +1244,9 @@ multiple-projects
 
 ```
 
+Maven可以有效地管理多个模块，我们只需要把每个模块当作一个独立的Maven项目，它们有各自独立的`pom.xml`
+
+
 # 16.XML和JSON
 
 # 17.JDBC编程
