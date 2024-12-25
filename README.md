@@ -812,6 +812,88 @@ To be continued...
 
 # 9.异常处理
 
+所谓错误，就是程序调用某个函数的时候，如果失败了，就表示出错。
+
+## Java的异常
+
+调用方如何获知调用失败的信息？有两种方法：
+
+方法一：约定返回错误码。
+
+例如，处理一个文件，如果返回`0`，表示成功，返回其他整数，表示约定的错误码：
+
+```java
+
+int code = processFile("C:\\test.txt");
+if (code == 0) {
+    // ok:
+} else {
+    // error:
+    switch (code) {
+    case 1:
+        // file not found:
+    case 2:
+        // no read permission:
+    default:
+        // unknown error:
+    }
+}
+
+```
+
+方法二：在语言层面上提供一个异常处理机制。
+
+Java内置了一套异常处理机制，总是使用异常来表示错误。
+
+异常是一种`class`，因此它本身带有类型信息。异常可以在任何地方抛出，但只需要在上层捕获，这样就和方法调用分离了：
+
+try {
+    String s = processFile(“C:\\test.txt”);
+    // ok:
+} catch (FileNotFoundException e) {
+    // file not found:
+} catch (SecurityException e) {
+    // no read permission:
+} catch (IOException e) {
+    // io error:
+} catch (Exception e) {
+    // other error:
+}
+
+因为Java的异常是`class`，它的继承关系如下：
+
+```plaintext
+
+                       ┌───────────┐
+                       │   Object   │
+                       └───────────┘
+                             ▲
+                             │
+                       ┌───────────┐
+                       │ Throwable  │
+                       └───────────┘
+                             ▲
+                  ┌──────────┴──────────┐
+                  │                     │
+            ┌───────────┐        ┌───────────┐
+            │   Error    │        │ Exception │
+            └───────────┘        └───────────┘
+                  ▲                     ▲
+        ┌─────────┘              ┌─────┴────────────┐
+        │                        │                  │
+┌─────────────────┐     ┌─────────────────┐ ┌───────────┐
+│ OutOfMemoryError│ ... │ RuntimeException│ │ IOException│ ...
+└─────────────────┘     └─────────────────┘ └───────────┘
+                                  ▲
+                 ┌────────────────┴────────────────┐
+                 │                                 │
+     ┌─────────────────────────┐     ┌─────────────────────────┐
+     │ NullPointerException    │     │ IllegalArgumentException │ ...
+     └─────────────────────────┘     └─────────────────────────┘
+
+
+```
+
 ## 异常类型
 
 ## 捕获异常
@@ -841,6 +923,9 @@ public class Hello {
         return "Hello";
     }
 }
+
+```
+
 
 ```
 
