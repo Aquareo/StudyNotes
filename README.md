@@ -1159,6 +1159,20 @@ Maven就是是专门为Java项目打造的管理和构建工具，它的主要�
 </project>
 ```
 
+
+###依赖
+
+```java
+<dependencies>
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.32</version>
+    </dependency>
+</dependencies>
+```
+
+
 # 16.XML和JSON
 
 # 17.JDBC编程
