@@ -1935,3 +1935,22 @@ public class EnumExample {
 
 现在问个问题，为什么我们可以直接打印`season`对象？
 
+## enum不能实例化!
+
+如果尝试运行以下内容会报错
+
+```java
+
+public class Main {
+    public static void main(String[] args) 
+    {
+        // 输出所有季节的温度范围
+        Season A= new Season(1,10);
+        System.out.println(A.getMinTemp());
+    }
+}
+
+
+```
+
+
