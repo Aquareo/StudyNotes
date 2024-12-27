@@ -1920,7 +1920,7 @@ public enum Season {
 }
 ```
 
-那么要如何用我们定义的这个`enum`呢
+那么要如何用我们定义的这个`enum`呢？
 
 ```java
 public class EnumExample {
