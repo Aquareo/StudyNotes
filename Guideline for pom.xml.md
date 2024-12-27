@@ -261,3 +261,113 @@ dependencies 元素定义了项目所需的库和框架。每个依赖项由 `<d
 - 属性配置（如 `java.version`）
 - 注释
 - 依赖管理（dependencyManagement）
+
+
+
+
+# 一个项目
+
+```plaintext
+├─.idea
+├─bydcbsc-business-api
+├─bydcbsc-business-common
+│  ├─src
+│  │  └─main
+│  │      └─java
+│  │          └─com
+│  │              └─bydauto
+│  │                  ├─application
+│  │                  │  ├─dto
+│  │                  │  ├─enums
+│  │                  │  └─vo
+│  │                  ├─enums
+│  │                  └─model
+│  └─target
+│      ├─classes
+│      │  └─com
+│      │      └─bydauto
+│      │          ├─application
+│      │          │  ├─dto
+│      │          │  ├─enums
+│      │          │  └─vo
+│      │          ├─enums
+│      │          └─model
+│      └─generated-sources
+│          └─annotations
+├─bydcbsc-business-process
+│  ├─src
+│  │  └─main
+│  │      ├─java
+│  │      │  └─com
+│  │      │      └─bydauto
+│  │      │          ├─authorize
+│  │      │          ├─config
+│  │      │          ├─dao
+│  │      │          ├─eunm
+│  │      │          ├─exception
+│  │      │          ├─listener
+│  │      │          ├─model
+│  │      │          │  ├─dto
+│  │      │          │  ├─entity
+│  │      │          │  ├─param
+│  │      │          │  └─vo
+│  │      │          │      └─mobile
+│  │      │          ├─service
+│  │      │          │  ├─business
+│  │      │          │  ├─client
+│  │      │          │  ├─cmm
+│  │      │          │  ├─dictionary
+│  │      │          │  ├─email
+│  │      │          │  ├─files
+│  │      │          │  ├─flowable
+│  │      │          │  ├─form
+│  │      │          │  ├─message
+│  │      │          │  ├─report
+│  │      │          │  ├─seq
+│  │      │          │  ├─spareParts
+│  │      │          │  └─undertaker
+│  │      │          ├─utils
+│  │      │          └─web
+│  │      └─resources
+│  │          ├─processes
+│  │          ├─static
+│  │          └─templates
+│  └─target
+│      ├─classes
+│      │  ├─com
+│      │  │  └─bydauto
+│      │  │      ├─authorize
+│      │  │      ├─config
+│      │  │      ├─dao
+│      │  │      ├─eunm
+│      │  │      ├─exception
+│      │  │      ├─listener
+│      │  │      ├─model
+│      │  │      │  ├─dto
+│      │  │      │  ├─entity
+│      │  │      │  ├─param
+│      │  │      │  └─vo
+│      │  │      │      └─mobile
+│      │  │      ├─service
+│      │  │      │  ├─business
+│      │  │      │  ├─client
+│      │  │      │  ├─cmm
+│      │  │      │  ├─dictionary
+│      │  │      │  ├─email
+│      │  │      │  ├─files
+│      │  │      │  ├─flowable
+│      │  │      │  ├─form
+│      │  │      │  ├─message
+│      │  │      │  ├─report
+│      │  │      │  ├─seq
+│      │  │      │  ├─spareParts
+│      │  │      │  └─undertaker
+│      │  │      ├─utils
+│      │  │      └─web
+│      │  ├─processes
+│      │  ├─static
+│      │  └─templates
+│      └─generated-sources
+│          └─annotations
+└─logs  制作成一个.md文档
+```
