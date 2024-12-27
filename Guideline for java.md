@@ -1864,3 +1864,74 @@ HTTP协议是一个基于TCP协议之上的请求-响应协议，它非常简单
 # 22.Spring开发
 
 # 23.Spring Boot开发
+
+
+
+
+
+# 实时补充
+
+
+## `enum`
+
+`enum`（枚举）是 Java 中的一种特殊的类，它表示一组常量（例如，星期天到星期六、季节等）。`enum` 可以在 Java 中用于表示固定的一组常量，并且具有更强的类型安全性。
+
+假设我们有一个 `Season` 枚举，表示一年中的四个季节
+
+```java
+public enum Season {
+    SPRING, SUMMER, AUTUMN, WINTER;
+}
+```
+示例：每个季节有不同的温度范围
+
+```java
+
+public enum Season {
+    SPRING(15, 25), // 春季温度范围：15到25
+    SUMMER(25, 35), // 夏季温度范围：25到35
+    AUTUMN(10, 20), // 秋季温度范围：10到20
+    WINTER(-5, 10); // 冬季温度范围：-5到10
+
+    private final int minTemp; // 最低温度
+    private final int maxTemp; // 最高温度
+
+    // 构造方法
+    Season(int minTemp, int maxTemp) {
+        this.minTemp = minTemp;
+        this.maxTemp = maxTemp;
+    }
+
+    // 获取最低温度
+    public int getMinTemp() {
+        return minTemp;
+    }
+
+    // 获取最高温度
+    public int getMaxTemp() {
+        return maxTemp;
+    }
+
+    // 输出季节的温度范围
+    @Override
+    public String toString() {
+        return this.name() + ": " + minTemp + "°C to " + maxTemp + "°C";
+    }
+}
+```
+
+那么要如何用我们定义的这个`enum`呢
+
+```java
+public class EnumExample {
+    public static void main(String[] args) {
+        // 输出所有季节的温度范围
+        for (Season season : Season.values()) {
+            System.out.println(season);
+        }
+    }
+}
+```
+
+现在问个问题，为什么我们可以直接打印`season`对象
+
