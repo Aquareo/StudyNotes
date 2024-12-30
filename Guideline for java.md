@@ -90,6 +90,7 @@ class ImageDocument extends Document {
     }
 }
 
+
 public class PrinterApp {
     public static void printDocument(Document document) {
         document.print();  // 调用多态方法
