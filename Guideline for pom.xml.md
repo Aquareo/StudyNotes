@@ -59,7 +59,6 @@
 - artifactId：项目的唯一标识符，通常是项目的名称。
 - version：项目的版本号，通常使用 1.0.0 或 1.0-SNAPSHOT（SNAPSHOT 表示开发中的版本）。
 
-```xml
 <groupId>com.example</groupId>
 <artifactId>my-project</artifactId>
 <version>1.0-SNAPSHOT</version>
