@@ -77,6 +77,41 @@ string longestPalindrome(string s)
 
 
 ```c++
+    //返回的是长度
+    int fun(string &s,int i,int j)
+    {
+        while(i>=0&&j<s.size()&&s[i]==s[j])
+        {
+            i--;
+            j++;
+        }
 
+        return j-i-1;
+    }
+
+    string longestPalindrome(string s) 
+    {   
+       int n=s.size(),len=-1;
+       int mid;
+       for(int i=0;i<n;i++)
+       {
+            int temp1=fun(s,i,i),temp2=fun(s,i,i+1);
+            
+            if(temp1>len)
+            {
+                mid=i;
+                len=temp1;
+            }
+
+            if(temp2>len)
+            {
+                mid=i;
+                len=temp2;
+            }
+       }
+
+
+       return s.substr(mid-(len-1)/2,len);
+    }
 
 ```
