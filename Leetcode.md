@@ -28,24 +28,55 @@
 ## 代码
 
 ### 动态规划解法
-```python
-def longestPalindrome(s: str) -> str:
-    n = len(s)
-    dp = [[False] * n for _ in range(n)]
-    start = 0  # 记录回文串的起始位置
-    max_len = 1  # 最长回文串的长度
-    
-    for i in range(n):
-        dp[i][i] = True  # 单个字符肯定是回文
-    
-    for length in range(2, n + 1):  # 子串长度从2到n
-        for i in range(n - length + 1):
-            j = i + length - 1
-            if s[i] == s[j]:
-                if length == 2 or dp[i + 1][j - 1]:
-                    dp[i][j] = True
-                    if length > max_len:
-                        max_len = length
-                        start = i
-    
-    return s[start:start + max_len]
+```c++
+string longestPalindrome(string s) 
+    {   
+        int n=s.size();
+        int ans=1;
+
+        int start=0;
+        int end=0;
+        vector<vector<int>>dp(n,vector<int>(n,0));
+
+
+        //memo[i][j]表示i->j是否回文串
+        
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(i==j)dp[i][j]=1;
+                else 
+                {
+                    if(s[i]==s[j])
+                    {
+                        if(i+1<n&&j-1>=0)
+                        {
+                             dp[i][j]=dp[i+1][j-1];
+                        }
+                        else dp[i][j]=1;
+                    }
+                    else dp[i][j]=0;
+
+
+                    cout<<"i= "<<i <<" j= "<<j<<' ' <<dp[i][j]<<endl;
+                    if(dp[i][j]==1&&j-i+1>ans)
+                    {
+                        start=i;
+                        end=j;
+                    }
+                }
+            }
+        }
+
+        return  s.substr(start, end- start + 1);;
+    }
+```
+
+### 中心扩展解法
+
+
+```c++
+
+
+```
